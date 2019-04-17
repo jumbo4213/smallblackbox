@@ -1,23 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
+    <bottom-tabs></bottom-tabs>
   </div>
 </template>
 
 <script>
+import bottomTabs from './components/bottom-tabs'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    bottomTabs
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
+    @import "./assets/common";
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
