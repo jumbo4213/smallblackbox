@@ -41,6 +41,8 @@
         position: fixed;
         bottom: 0;
         width: 100%;
+        background: #fff;
+        border-top:1px solid #eee;
     }
 
     .bottom-box {

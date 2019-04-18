@@ -11,39 +11,41 @@ import headline from '../pages/find/children/headline'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      component: App,
-      redirect:'/find',
-      children:[
+    routes: [
         {
-          path:'/find',
-          component: find,
-          redirect:'/find/headline',
-          children:[
-            {
-              path:'/attention',
-              component:attention
-            },{
-              path:'/headline',
-              component:headline
-            }
-          ]
-        },
-        {
-          path:'/library',
-          component: library
-        },
-        {
-          path:'/community',
-          component: community
-        },
-        {
-          path:'/me',
-          component: me
+            path: '/',
+            component: App,
+            redirect: '/find',
+            children: [
+                {
+                    path: '/find',
+                    component: find,
+                    redirect: '/headline',
+                    children: [
+                        {
+                            path: '/attention',
+                            component: attention,
+                            meta:{index:0}
+                        }, {
+                            path: '/headline',
+                            component: headline,
+                            meta:{index:1}
+                        }
+                    ]
+                },
+                {
+                    path: '/library',
+                    component: library
+                },
+                {
+                    path: '/community',
+                    component: community
+                },
+                {
+                    path: '/me',
+                    component: me
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 })

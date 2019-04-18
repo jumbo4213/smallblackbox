@@ -23,8 +23,8 @@
         props: {
             lists: Array
         },
-        mounted() {
-            this.current = this.lists.length - 1;
+        created() {
+            this.current = this.$route.meta.index;
         },
         methods: {
             goAddress(index, path) {
@@ -38,14 +38,18 @@
 <style lang="scss" scoped>
     .top-nav {
         display: flex;
+        width:100%;
         justify-content: space-between;
-
+        position: fixed;
+        top:0;
+        left:0;
+        z-index: 100;
+        background: #fff;
     }
 
     .top-left {
         display: flex;
         flex: 1;
-
         > li {
             display: flex;
             font-size: 1.2rem;

@@ -26,6 +26,12 @@
 <style scoped lang="scss">
     .navs {
         display: flex;
+        position: fixed;
+        top:3.2rem;
+        left:0;
+        background: #fff;
+        width:100%;
+        border-bottom: .1rem solid #eee;
     }
 
     .nav-left {

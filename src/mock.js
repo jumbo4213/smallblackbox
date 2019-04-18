@@ -27,3 +27,17 @@ Mock.mock('games/attention', 'get', [
         title: '只狼'
     }]
 );
+const articleLists=[];
+for(let i=0;i<10;i++){
+    let article={
+        title:'@csentence(10,20)',
+        author:'@cname(2,4)',
+        date:'@date(2018-MM-dd)',
+        views:'@natural(0,10000)',
+        laud:'@natural(0,10000)',
+        comment:'@natural(0,10000)',
+        image:Random.image('200*100')
+    }
+    articleLists.push(article);
+}
+Mock.mock('articles/1','get',articleLists);
