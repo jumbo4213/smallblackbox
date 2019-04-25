@@ -40,16 +40,15 @@
         display: flex;
         width:100%;
         justify-content: space-between;
-        position: fixed;
-        top:0;
-        left:0;
         z-index: 100;
         background: #fff;
+        height: 3.2rem;
     }
 
     .top-left {
         display: flex;
         flex: 1;
+        height:3.2rem;
         > li {
             display: flex;
             font-size: 1.2rem;
@@ -69,6 +68,7 @@
     .top-right {
         display: flex;
         justify-content: flex-end;
+        height: 3.2rem;
     }
 
     .top-right > li {

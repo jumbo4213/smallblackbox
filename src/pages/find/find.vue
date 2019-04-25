@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="top-content">
         <topTabs :lists="topList"></topTabs>
-        <div style="position: relative;margin-top:3.2rem">
-            <transition :name="direction">
-                <router-view/>
+        <div class="detail-content">
+            <transition :name="direction" mode="out-in" >
+                <router-view />
             </transition>
         </div>
     </div>
@@ -22,7 +22,7 @@
                 },
                 {
                     title: '头条',
-                    path: '/headline'
+                    path: '/headline/0'
                 }],
                 direction: 'left'
             }
@@ -62,10 +62,6 @@
 
     .left-leave-active {
         transition: .5s;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
     }
 
     .right-enter {
@@ -91,10 +87,17 @@
 
     .right-leave-active {
         transition: .5s;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
     }
-
+    .top-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width:100%;
+        height:100%;
+    }
+    .detail-content{
+        display: flex;
+        overflow: auto;
+        flex:1;
+    }
 </style>

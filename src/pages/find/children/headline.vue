@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <contentNavs :lists="lists"></contentNavs>
-        <div class="content">
-            <contentList :aLists="articleLists"></contentList>
-        </div>
+    <div class="top-page">
+        <contentNavs :lists="lists" :current="current"></contentNavs>
+        <contentList :aLists="articleLists"></contentList>
     </div>
 
 </template>
@@ -22,24 +20,33 @@
         data() {
             return {
                 lists: [],
-                articleLists:[]
+                articleLists:[],
+                current:{
+                    id:0,
+                }
+
             }
         },
         created() {
             this.getAttention();
-            this.getArticles();
-            console.log(this.articleLists);
+            this.getArticles(this.current.id);
+        },
+        watch:{
+            $route(to,from){
+                this.current.id=to.params.id;
+                this.getArticles(this.current.id);
+            }
         },
         methods: {
             getAttention() {
-                axios.get('games/attention').then(result => {
+                axios.get('/games/attention').then(result => {
                     this.lists = result.data;
+                    this.current.id=result.data[0].id;
                 })
             },
-            getArticles(){
-                axios.get('articles/1').then(result=>{
+            getArticles(id){
+                axios.get(`/headline/${id}`).then(result=>{
                     this.articleLists=result.data;
-                    //console.log(result);
                 })
             }
         }
@@ -47,5 +54,12 @@
 </script>
 
 <style scoped>
+    .top-page{
+        display: flex;
+        flex-direction: column;
+        height:100%;
+        width:100%;
+        justify-content: space-between;
+    }
 
 </style>

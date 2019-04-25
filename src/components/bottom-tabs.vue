@@ -1,7 +1,8 @@
 <template>
     <div class="foot-tabs">
         <ul class="bottom-box">
-            <li v-for="item in list" class="tab-item" @click="goAddress(item.path)">{{item.title}}</li>
+            <li v-for="(item,index ) in list" class="tab-item"
+                @click="goAddress(index,item.path)" :class="[index===current?'current':'']">{{item.title}}</li>
         </ul>
     </div>
 </template>
@@ -25,12 +26,14 @@
                         title: "我",
                         path: "/me"
                     }
-                ]
+                ],
+                current:0
             }
         },
         methods: {
-            goAddress(path) {
+            goAddress(index,path) {
                 this.$router.push(path);
+                this.current=index;
             }
         }
     }
@@ -38,8 +41,6 @@
 
 <style scoped>
     .foot-tabs {
-        position: fixed;
-        bottom: 0;
         width: 100%;
         background: #fff;
         border-top:1px solid #eee;
@@ -47,9 +48,6 @@
 
     .bottom-box {
         display: flex;
-        bottom: 0;
-        left: 0;
-        right: 0;
     }
 
     .tab-item {
@@ -57,8 +55,12 @@
         flex: auto;
         flex-direction: column;
         font-size: 0.9rem;
-        height: 2rem;
+        height: 2.6rem;
         line-height: 2rem;
+        justify-content: center;
+        align-items: center;
     }
-
+    .bottom-box>li.current{
+        color:#000;
+    }
 </style>

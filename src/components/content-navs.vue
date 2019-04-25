@@ -2,14 +2,13 @@
     <div class="navs">
         <div class="nav-left">
             <ul>
-                <li v-for="list in lists">{{list.title}}</li>
+                <li v-for="list in lists" :class="[current.id==list.id?'current':'']" @click="changeId(list.id)">{{list.title}}</li>
             </ul>
         </div>
         <div class="line"></div>
         <div class="nav-right"><img src="../assets/images/setting.png" alt=""></div>
     </div>
 </template>
-
 <script>
 
     export default {
@@ -18,7 +17,13 @@
             return {}
         },
         props: {
-            lists: Array
+            lists: Array,
+            current:Object
+        },
+        methods:{
+            changeId(id){
+                this.$router.push(`/headline/${id}`);
+            }
         }
     }
 </script>
@@ -26,11 +31,9 @@
 <style scoped lang="scss">
     .navs {
         display: flex;
-        position: fixed;
-        top:3.2rem;
-        left:0;
         background: #fff;
         width:100%;
+        height:1.8rem;
         border-bottom: .1rem solid #eee;
     }
 
@@ -38,7 +41,7 @@
         display: flex;
         flex: 9;
         flex-wrap: nowrap;
-        overflow: scroll;
+        overflow-x: auto;
 
         &::-webkit-scrollbar {
             display: none;
@@ -56,6 +59,9 @@
                 justify-content: center;
                 align-items: center;
                 white-space: nowrap;
+                &.current{
+                    color:#000;
+                }
             }
         }
 

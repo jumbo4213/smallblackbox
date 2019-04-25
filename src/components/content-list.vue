@@ -1,20 +1,22 @@
 <template>
-    <ul class="content-list">
-        <li v-for="list in aLists">
-            <div class="list-left">
-                <h5 class="article-title">{{list.title}}</h5>
-                <p class="article-info">
-                    <span class="article-date">{{list.date}}</span>
-                    <span class="article-arthur">{{list.author}}</span>
-                    <span class="article-views">{{list.views}}</span>
-                    <span class="article-comment">{{list.comment}}</span>
-                </p>
-            </div>
-            <div class="list-right">
-                <img :src="list.image" >
-            </div>
-        </li>
-    </ul>
+    <div class="content-detail">
+        <ul class="content-list">
+            <li v-for="list in aLists">
+                <div class="list-left">
+                    <h5 class="article-title">{{list.title}}</h5>
+                    <p class="article-info">
+                        <span class="article-date">{{list.date.slice(2)}}</span>
+                        <span class="article-arthur">{{list.author}}</span>
+                        <span class="article-views">{{list.views}}</span>
+                        <span class="article-comment">{{list.comment}}</span>
+                    </p>
+                </div>
+                <div class="list-right">
+                    <img :src="list.image" >
+                </div>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -32,11 +34,18 @@
 </script>
 
 <style scoped lang="scss">
+    .content-detail{
+        display: flex;
+        overflow: auto;
+        flex:1;
+    }
     .content-list{
-        padding:2.2rem .1rem;
+        flex:1;
+        flex-direction: column;
         background:#eee;
         >li{
             display: flex;
+            height:6rem;
             margin-bottom:.4rem;
         }
     }

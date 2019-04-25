@@ -7,7 +7,7 @@ import community from '../pages/community'
 import me from '../pages/me'
 import attention from '../pages/find/children/attention'
 import headline from '../pages/find/children/headline'
-
+import login from '../pages/login'
 Vue.use(Router)
 
 export default new Router({
@@ -15,35 +15,42 @@ export default new Router({
         {
             path: '/',
             component: App,
-            redirect: '/find',
             children: [
+                {
+                    path:'',
+                    redirect: '/find'
+                },
                 {
                     path: '/find',
                     component: find,
-                    redirect: '/headline',
+                    redirect: '/headline/0',
                     children: [
                         {
                             path: '/attention',
                             component: attention,
-                            meta:{index:0}
+                            meta:{index:0,}
                         }, {
-                            path: '/headline',
+                            path: '/headline/:id',
                             component: headline,
-                            meta:{index:1}
+                            meta:{index:1,},
                         }
                     ]
                 },
                 {
                     path: '/library',
-                    component: library
+                    component: library,
                 },
                 {
                     path: '/community',
-                    component: community
+                    component: community,
                 },
                 {
                     path: '/me',
-                    component: me
+                    component: me,
+                },
+                {
+                    path: '/login',
+                    component: login,
                 }
             ]
         }
