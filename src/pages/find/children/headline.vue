@@ -7,7 +7,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import contentNavs from '../../../components/content-navs'
     import contentList from '../../../components/content-list'
 
@@ -39,13 +38,13 @@
         },
         methods: {
             getAttention() {
-                axios.get('/games/attention').then(result => {
+                this.$http.get('/games/attention').then(result => {
                     this.lists = result.data;
                     this.current.id=result.data[0].id;
                 })
             },
             getArticles(id){
-                axios.get(`/headline/${id}`).then(result=>{
+                this.$http.get(`/headline/${id}`).then(result=>{
                     this.articleLists=result.data;
                 })
             }

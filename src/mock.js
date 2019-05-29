@@ -42,3 +42,5 @@ for(let i=0;i<10;i++){
     articleLists.push(article);
 }
 Mock.mock(/\/headline\/\d+/,'get',articleLists);
+Mock.mock('/login','post',{msg:'success',token:'123456'});
+Mock.mock('/getInfo','get',{msg:'success',token:'123456'});

@@ -9,13 +9,13 @@
     </div>
 </template>
 <script>
-    import bottomTabs from './components/bottom-tabs'
-    export default {
-        name: 'App',
-        components: {
-            bottomTabs
-        }
-    }
+import bottomTabs from './components/bottom-tabs'
+export default {
+  name: 'App',
+  components: {
+    bottomTabs
+  }
+}
 </script>
 
 <style lang="scss">

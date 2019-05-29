@@ -3,7 +3,7 @@
         <ul class="content-list">
             <li v-for="list in aLists">
                 <div class="list-left">
-                    <h5 class="article-title">{{list.title}}</h5>
+                    <h5 class="article-title" @click="getInfo">{{list.title}}</h5>
                     <p class="article-info">
                         <span class="article-date">{{list.date.slice(2)}}</span>
                         <span class="article-arthur">{{list.author}}</span>
@@ -29,6 +29,13 @@
         },
         props:{
             aLists:Array
+        },
+        methods:{
+          getInfo(){
+            this.$http.get('/getInfo').then(result=>{
+              console.log(result);
+            })
+          }
         }
     }
 </script>

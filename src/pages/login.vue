@@ -4,24 +4,70 @@
             <img src="../assets/images/back.png" alt="">
             <h3>密码登录</h3>
         </div>
-        <form action="">
+        <form action="" >
             <div class="form-item">
-                <input type="text" placeholder="账号">
+                <input type="text" placeholder="账号" v-model="loginData.username">
             </div>
             <div class="form-item">
-                <input type="password" placeholder="密码">
+                <input type="password" placeholder="密码" v-model="loginData.password">
             </div>
             <div class="form-item">
-                <button>登录</button>
+                <button type="button" @click="click">登录</button>
             </div>
         </form>
+        <confirm v-if="showConfirm" :confirmText="confirmText" @closeTip="closeTip"></confirm>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "login"
+  import confirm from '../components/confirm'
+  import {mapActions} from 'vuex'
+export default {
+  name: 'login',
+  data(){
+    return {
+      loginData:{
+        username:'',
+        password:''
+      },
+      showConfirm:false,
+      confirmText:'hello'
     }
+  },
+  components:{
+    confirm
+  },
+  methods:{
+    saveLogin(token){
+      this.$store.dispatch('saveLogin',token);
+    },
+    click(){
+      if(this.loginData.username==''){
+        this.showConfirm=true;
+        this.confirmText='用户名不能为空！';
+        return;
+      }
+      if(this.loginData.password==''){
+        this.showConfirm=true;
+        this.confirmText='密码 不能为空！';
+        return;
+      }
+      this.$http.post('/login',this.loginData).then(result=>{
+        console.log(result);
+        if(result.data.msg=='success'){
+          console.log(4);
+          this.showConfirm=true;
+          this.confirmText='登录成功';
+          this.saveLogin(result.data.token);
+          this.$router.push('/');
+        }
+      })
+    },
+    closeTip(){
+      this.showConfirm=false;
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
